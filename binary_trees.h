@@ -46,4 +46,8 @@ int binary_tree_is_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
 
+
+/* Printing function */
+void binary_tree_print(const binary_tree_t *);
+
 #endif /* BINARY_TREES_H */
