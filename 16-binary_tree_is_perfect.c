@@ -9,11 +9,17 @@
 */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
+	size_t left_height, right_height;
+
 	if (tree == NULL)
 	return (0);
 
-	return (1 + binary_tree_height(tree->left));
+	left_height = binary_tree_height(tree->left);
+	right_height = binary_tree_height(tree->right);
+
+	return (1 + (left_height > right_height ? left_height : right_height));
 }
+
 
 /**
  * is_perfect_recursive - Helper function to check if tree is perfect
@@ -31,12 +37,13 @@ int is_perfect_recursive(const binary_tree_t *tree, size_t d, size_t level)
 	if (tree->left == NULL && tree->right == NULL)
 	return (d == level + 1);
 
-	if (tree->left || tree->right == NULL)
+	if (tree->left == NULL || tree->right == NULL)
 	return (0);
 
 	return (is_perfect_recursive(tree->left, d, level + 1) &&
 	is_perfect_recursive(tree->right, d, level + 1));
 }
+
 
 /**
  * binary_tree_is_perfect - Checks if a binary tree is perfect
